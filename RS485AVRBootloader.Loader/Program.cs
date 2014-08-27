@@ -9,7 +9,7 @@ namespace SerialAVRBootloader.Loader
         static void Main(string[] args)
         {
             ISettingsProvider settingsProvider = new PropertiesSettingsProvider();
-            ILogger logger = new ConsoleLogger();
+            ILogger logger = new MultiLogger(new ConsoleLogger(), new FileLogger());
             try
             {
                 var bootloader = new BootloaderCommunicator(new SerialCommunicator(settingsProvider), logger);

@@ -51,7 +51,10 @@
   <ItemGroup>
     <Compile Include="BootloaderCommunicator.cs" />
     <Compile Include="Common\ConsoleLogger.cs" />
+    <Compile Include="Common\ConsoleTextColor.cs" />
+    <Compile Include="Common\FileLogger.cs" />
     <Compile Include="Common\ISettingsProvider.cs" />
+    <Compile Include="Common\MultiLogger.cs" />
     <Compile Include="Model\BootloaderInfo.cs" />
     <Compile Include="Exceptions\CommunicationLostExpection.cs" />
     <Compile Include="Communicators\ICommunicator.cs" />
