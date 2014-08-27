@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using SerialAVRBootloader.Loader.Common;
+using SerialAVRBootloader.Loader.Communicators;
 
 namespace SerialAVRBootloader.Loader
 {
@@ -10,6 +8,20 @@ namespace SerialAVRBootloader.Loader
     {
         static void Main(string[] args)
         {
+            ISettingsProvider settingsProvider = new PropertiesSettingsProvider();
+            ILogger logger = new ConsoleLogger();
+            try
+            {
+                var bootloader = new BootloaderCommunicator(new SerialCommunicator(settingsProvider), logger);
+                var bootloaderInfo = bootloader.GetBootloaderInfo();
+
+                logger.WriteLine(bootloaderInfo.ToString());
+            }
+            catch (Exception exception)
+            {
+                logger.WriteError(exception);
+            }
+
         }
     }
 }
