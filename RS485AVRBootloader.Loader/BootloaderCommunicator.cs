@@ -1,4 +1,5 @@
-﻿using SerialAVRBootloader.Loader.Common;
+﻿using System.IO;
+using SerialAVRBootloader.Loader.Common;
 using SerialAVRBootloader.Loader.Communicators;
 using SerialAVRBootloader.Loader.Exceptions;
 using SerialAVRBootloader.Loader.Model;
@@ -28,6 +29,11 @@ namespace SerialAVRBootloader.Loader
             _logger.WriteLine(rawInfo);
 
             return BootloaderInfo.Parse(rawInfo);
+        }
+
+        public void WriteProgram(Stream dataStream)
+        {
+            
         }
 
     }

@@ -1,6 +1,6 @@
 ﻿using System;
 using SerialAVRBootloader.Loader.Common;
-using SerialAVRBootloader.Loader.Communicators;
+using SerialAVRBootloader.Loader.Communicators.Serial;
 
 namespace SerialAVRBootloader.Loader
 {
@@ -9,10 +9,11 @@ namespace SerialAVRBootloader.Loader
         static void Main(string[] args)
         {
             ISettingsProvider settingsProvider = new PropertiesSettingsProvider();
+            ISerialDevice serialDevice = new SerialPortDevice(settingsProvider);
             ILogger logger = new MultiLogger(new ConsoleLogger(), new FileLogger());
             try
             {
-                var bootloader = new BootloaderCommunicator(new SerialCommunicator(settingsProvider), logger);
+                var bootloader = new BootloaderCommunicator(new SerialCommunicator(serialDevice), logger);
                 var bootloaderInfo = bootloader.GetBootloaderInfo();
 
                 logger.WriteLine(bootloaderInfo.ToString());

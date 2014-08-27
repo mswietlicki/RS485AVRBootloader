@@ -1,17 +1,13 @@
 ﻿using System;
-using System.IO.Ports;
-using SerialAVRBootloader.Loader.Common;
 
-namespace SerialAVRBootloader.Loader.Communicators
+namespace SerialAVRBootloader.Loader.Communicators.Serial
 {
     public class SerialCommunicator : ICommunicator
     {
-        private readonly ISettingsProvider _settingsProvider;
-        private readonly SerialPort _serialPort;
-        public SerialCommunicator(ISettingsProvider settingsProvider)
+        private readonly ISerialDevice _serialPort;
+        public SerialCommunicator(ISerialDevice serialPort)
         {
-            _settingsProvider = settingsProvider;
-            _serialPort = new SerialPort(_settingsProvider.GetSetting("PortName"), int.Parse(_settingsProvider.GetSetting("PortBaudRate")));
+            _serialPort = serialPort;
         }
 
         public void Write(string text)
