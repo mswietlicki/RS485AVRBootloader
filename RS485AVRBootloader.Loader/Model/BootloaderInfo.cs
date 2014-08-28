@@ -1,7 +1,9 @@
 ﻿using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace SerialAVRBootloader.Loader.Model
 {
+    [ToString]
     public struct BootloaderInfo
     {
         public string SPM_PAGESIZE { get; set; }
@@ -12,14 +14,15 @@ namespace SerialAVRBootloader.Loader.Model
 
         public static BootloaderInfo Parse(string rawData)
         {
-            var data = rawData.Split(',').Select(_ => _.Trim()).ToArray();
+            var regex = new Regex(@"&(\d+?),(.+?),(.+?),(\d+?),(.+?)\*");
+            var data = regex.Match(rawData);
             return new BootloaderInfo
             {
-                SPM_PAGESIZE = data[0],
-                BLS_START = data[1],
-                MCU = data[2],
-                XTAL = data[3],
-                BOOTLOADER_VERSION = data[4]
+                SPM_PAGESIZE = data.Groups[1].Value,
+                BLS_START = data.Groups[2].Value,
+                MCU = data.Groups[3].Value,
+                XTAL = data.Groups[4].Value,
+                BOOTLOADER_VERSION = data.Groups[5].Value
             };
         }
     }

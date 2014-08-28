@@ -29,7 +29,7 @@ namespace SerialAVRBootloader.Loader.Communicators.Serial
 
         public int ReadChar()
         {
-            return _serialPort.ReadChar();
+            return _serialPort.ReadByte();
         }
 
         public string ReadExisting()

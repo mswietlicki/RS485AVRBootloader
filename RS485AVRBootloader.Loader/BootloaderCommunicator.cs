@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using SerialAVRBootloader.Loader.Common;
 using SerialAVRBootloader.Loader.Communicators;
 using SerialAVRBootloader.Loader.Exceptions;
@@ -33,7 +34,21 @@ namespace SerialAVRBootloader.Loader
 
         public void WriteProgram(Stream dataStream)
         {
-            
+            if (_communicator.ReadChar() != '?')
+                throw new CommunicationLostExpection();
+
+            _communicator.Write("uw");
+
+            while (dataStream.Position < dataStream.Length)
+            {
+                _communicator.Write(new byte[] {1}, 0, 1);
+                var data = new byte[64];
+                dataStream.Read(data, 0, 64);
+                _communicator.Write(data, 0, 64);
+
+                if (_communicator.ReadChar() != '@') 
+                    throw new CommunicationLostExpection();
+            }
         }
 
     }
