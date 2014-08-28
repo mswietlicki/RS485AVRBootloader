@@ -1,4 +1,5 @@
-﻿using System.IO.Ports;
+﻿using System;
+using System.IO.Ports;
 using SerialAVRBootloader.Loader.Common;
 
 namespace SerialAVRBootloader.Loader.Communicators.Serial
@@ -41,6 +42,16 @@ namespace SerialAVRBootloader.Loader.Communicators.Serial
         public string ReadTo(string endchar)
         {
             return _serialPort.ReadTo(endchar);
+        }
+
+        public void Dispose()
+        {
+            if (_serialPort == null) return;
+
+            if (_serialPort.IsOpen)
+                _serialPort.Close();
+
+            _serialPort.Dispose();
         }
     }
 }

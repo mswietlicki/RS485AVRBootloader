@@ -18,23 +18,26 @@ namespace SerialAVRBootloader.Loader
             printer.PrintArgs(args);
 
             ISettingsProvider settingsProvider = new PropertiesSettingsProvider();
-
             printer.PrintConfig(settingsProvider);
 
-            ISerialDevice serialDevice = new SerialPortDevice(settingsProvider);
-            try
+            using (ISerialDevice serialDevice = new SerialPortDevice(settingsProvider))
             {
-                var bootloader = new BootloaderCommunicator(new SerialCommunicator(serialDevice), Logger);
-                var bootloaderInfo = bootloader.GetBootloaderInfo();
+                try
+                {
+                    var bootloader = new BootloaderCommunicator(new SerialCommunicator(serialDevice), Logger);
+                    var bootloaderInfo = bootloader.GetBootloaderInfo();
 
-                Logger.WriteLine("Bootloader info: " + bootloaderInfo);
+                    Logger.WriteLine("Bootloader info: " + bootloaderInfo);
 
-                if (args.Any())
-                    SaveProgram(args[0], bootloader);
-            }
-            catch (Exception exception)
-            {
-                Logger.WriteError(exception);
+                    if (args.Any())
+                        SaveProgram(args[0], bootloader);
+
+                    Logger.WriteLine("Success!");
+                }
+                catch (Exception exception)
+                {
+                    Logger.WriteError(exception);
+                }
             }
         }
 

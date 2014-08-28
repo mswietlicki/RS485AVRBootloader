@@ -1,5 +1,4 @@
-﻿using System;
-using System.Text;
+﻿using System.Text;
 using SerialAVRBootloader.Loader.Common;
 using SerialAVRBootloader.Loader.Communicators.Serial;
 
@@ -8,7 +7,6 @@ namespace RS485AVRBootloader.Tests
     public class MockedSerialBootloader : ISerialDevice
     {
         private readonly ILogger _logger;
-        private int _dataRecived;
 
         public MockedSerialBootloader(ILogger logger)
         {
@@ -17,8 +15,10 @@ namespace RS485AVRBootloader.Tests
 
         public void Write(string text)
         {
+
         }
 
+        private int _dataRecived;
         public void Write(byte[] data, int offset, int count)
         {
             _logger.WriteLine(ToHexString(data));
@@ -27,7 +27,7 @@ namespace RS485AVRBootloader.Tests
 
         public int ReadByte()
         {
-            throw new NotImplementedException();
+            throw new System.NotImplementedException();
         }
 
         public int ReadChar()
@@ -42,7 +42,7 @@ namespace RS485AVRBootloader.Tests
 
         public string ReadExisting()
         {
-            throw new NotImplementedException();
+            throw new System.NotImplementedException();
         }
 
         public string ReadTo(string endchar)
@@ -59,6 +59,10 @@ namespace RS485AVRBootloader.Tests
                 sb.AppendFormat("{0} ", b.ToString("X2"));
             }
             return sb.ToString();
+        }
+
+        public void Dispose()
+        {
         }
     }
 }
