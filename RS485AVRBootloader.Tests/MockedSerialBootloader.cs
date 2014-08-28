@@ -8,6 +8,7 @@ namespace RS485AVRBootloader.Tests
     public class MockedSerialBootloader : ISerialDevice
     {
         private readonly ILogger _logger;
+        private int _dataRecived;
 
         public MockedSerialBootloader(ILogger logger)
         {
@@ -16,10 +17,8 @@ namespace RS485AVRBootloader.Tests
 
         public void Write(string text)
         {
-
         }
 
-        private int _dataRecived = 0;
         public void Write(byte[] data, int offset, int count)
         {
             _logger.WriteLine(ToHexString(data));
@@ -28,7 +27,7 @@ namespace RS485AVRBootloader.Tests
 
         public int ReadByte()
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         public int ReadChar()
@@ -43,7 +42,7 @@ namespace RS485AVRBootloader.Tests
 
         public string ReadExisting()
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         public string ReadTo(string endchar)

@@ -36,11 +36,6 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
     <Reference Include="ToString">
       <HintPath>..\packages\ToString.Fody.1.6.3.0\Lib\portable-net4+sl4+wp7+win8+MonoAndroid16+MonoTouch40\ToString.dll</HintPath>
       <Private>False</Private>

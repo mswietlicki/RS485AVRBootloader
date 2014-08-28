@@ -1,8 +1,8 @@
-﻿using System.Linq;
-using System.Text.RegularExpressions;
+﻿using System.Text.RegularExpressions;
 
 namespace SerialAVRBootloader.Loader.Model
 {
+    // ReSharper disable InconsistentNaming
     [ToString]
     public struct BootloaderInfo
     {
@@ -26,4 +26,6 @@ namespace SerialAVRBootloader.Loader.Model
             };
         }
     }
+
+    // ReSharper restore InconsistentNaming
 }

@@ -1,5 +1,4 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 using SerialAVRBootloader.Loader.Common;
 using SerialAVRBootloader.Loader.Communicators;
 using SerialAVRBootloader.Loader.Exceptions;
@@ -46,10 +45,9 @@ namespace SerialAVRBootloader.Loader
                 dataStream.Read(data, 0, 64);
                 _communicator.Write(data, 0, 64);
 
-                if (_communicator.ReadChar() != '@') 
+                if (_communicator.ReadChar() != '@')
                     throw new CommunicationLostExpection();
             }
         }
-
     }
 }

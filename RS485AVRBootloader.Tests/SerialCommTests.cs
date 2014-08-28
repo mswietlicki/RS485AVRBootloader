@@ -1,10 +1,7 @@
-﻿using System.Collections.Generic;
-using System.IO;
-using System.Linq;
+﻿using System.IO;
 using NUnit.Framework;
 using SerialAVRBootloader.Loader;
 using SerialAVRBootloader.Loader.Common;
-using SerialAVRBootloader.Loader.Communicators;
 using SerialAVRBootloader.Loader.Communicators.Serial;
 
 namespace RS485AVRBootloader.Tests
@@ -38,4 +35,3 @@ namespace RS485AVRBootloader.Tests
         }
     }
 }
-

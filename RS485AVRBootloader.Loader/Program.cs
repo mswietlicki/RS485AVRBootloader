@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using SerialAVRBootloader.Loader.Common;
@@ -7,10 +6,11 @@ using SerialAVRBootloader.Loader.Communicators.Serial;
 
 namespace SerialAVRBootloader.Loader
 {
-    class Program
+    internal class Program
     {
         public static ILogger Logger;
-        static void Main(string[] args)
+
+        private static void Main(string[] args)
         {
             Logger = new MultiLogger(new ConsoleLogger(), new FileLogger());
             Logger.WriteLine("RS485 AVR Bootloader loader");
@@ -33,7 +33,6 @@ namespace SerialAVRBootloader.Loader
             {
                 Logger.WriteError(exception);
             }
-
         }
 
         private static void SaveProgram(string file, BootloaderCommunicator bootloader)
