@@ -7,13 +7,13 @@ namespace SerialAVRBootloader.Loader.Common
     {
         public void WriteLine(string rawInfo)
         {
-            File.WriteAllText("Output.txt", rawInfo);
+            File.AppendAllText("Output.txt", rawInfo + "\r\n");
         }
 
         public void WriteError(Exception exception)
         {
-            File.WriteAllText("Output.txt", "ERROR: " + exception.Message);
-            File.WriteAllText("Output.txt", "STACKTRACE: " + exception.StackTrace);
+            File.AppendAllText("Output.txt", "ERROR: " + exception.Message + "\r\n");
+            File.AppendAllText("Output.txt", "STACKTRACE: " + exception.StackTrace + "\r\n");
         }
     }
 }

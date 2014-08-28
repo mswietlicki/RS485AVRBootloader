@@ -13,11 +13,14 @@ namespace SerialAVRBootloader.Loader
         private static void Main(string[] args)
         {
             Logger = new MultiLogger(new ConsoleLogger(), new FileLogger());
-            Logger.WriteLine("RS485 AVR Bootloader loader");
-            Logger.WriteLine("===========================");
-            Logger.WriteLine("");
+            var printer = new MessagePrinter(Logger);
+            printer.PrintWelcome();
+            printer.PrintArgs(args);
 
             ISettingsProvider settingsProvider = new PropertiesSettingsProvider();
+
+            printer.PrintConfig(settingsProvider);
+
             ISerialDevice serialDevice = new SerialPortDevice(settingsProvider);
             try
             {
@@ -34,6 +37,8 @@ namespace SerialAVRBootloader.Loader
                 Logger.WriteError(exception);
             }
         }
+
+
 
         private static void SaveProgram(string file, BootloaderCommunicator bootloader)
         {

@@ -51,6 +51,7 @@
     <Compile Include="Common\MultiLogger.cs" />
     <Compile Include="Communicators\Serial\ISerialDevice.cs" />
     <Compile Include="Communicators\Serial\SerialPortDevice.cs" />
+    <Compile Include="MessagePrinter.cs" />
     <Compile Include="Model\BootloaderInfo.cs" />
     <Compile Include="Exceptions\CommunicationLostExpection.cs" />
     <Compile Include="Communicators\ICommunicator.cs" />
