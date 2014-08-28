@@ -12,6 +12,7 @@ namespace SerialAVRBootloader.Loader.Communicators.Serial
         {
             _serialPort = new SerialPort(settingsProvider.GetSetting("PortName"),
                 int.Parse(settingsProvider.GetSetting("PortBaudRate")));
+            _serialPort.Open();
         }
 
         public void Write(string text)
