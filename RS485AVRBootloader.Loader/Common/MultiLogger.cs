@@ -13,14 +13,24 @@ namespace SerialAVRBootloader.Loader.Common
             _loggers = loggers.ToList();
         }
 
-        public void WriteLine(string rawInfo)
+        public void WriteLine(string text)
         {
-            _loggers.ForEach(_ => _.WriteLine(rawInfo));
+            _loggers.ForEach(_ => _.WriteLine(text));
         }
 
         public void WriteError(Exception exception)
         {
             _loggers.ForEach(_ => _.WriteError(exception));
+        }
+
+        public void ProgramOutput(string text)
+        {
+            _loggers.ForEach(_ => _.ProgramOutput(text));
+        }
+
+        public void ProgramInput(string text)
+        {
+            _loggers.ForEach(_ => _.ProgramInput(text));
         }
     }
 }

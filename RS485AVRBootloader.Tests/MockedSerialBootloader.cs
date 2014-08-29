@@ -21,16 +21,16 @@ namespace RS485AVRBootloader.Tests
         private int _dataRecived;
         public void Write(byte[] data, int offset, int count)
         {
-            _logger.WriteLine(ToHexString(data));
+            _logger.WriteLine(data.ToHexString());
             _dataRecived += count;
         }
 
-        public int ReadByte()
+        public byte ReadByte()
         {
             throw new System.NotImplementedException();
         }
 
-        public int ReadChar()
+        public char ReadChar()
         {
             if (_dataRecived >= 64)
             {
@@ -48,17 +48,6 @@ namespace RS485AVRBootloader.Tests
         public string ReadTo(string endchar)
         {
             return "\r\n&64,0x1E00,atmega88,8000000,1*\r\n";
-        }
-
-
-        public static string ToHexString(byte[] bytes)
-        {
-            var sb = new StringBuilder();
-            foreach (var b in bytes)
-            {
-                sb.AppendFormat("{0} ", b.ToString("X2"));
-            }
-            return sb.ToString();
         }
 
         public void Dispose()

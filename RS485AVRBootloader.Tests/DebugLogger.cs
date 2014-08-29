@@ -15,5 +15,15 @@ namespace RS485AVRBootloader.Tests
         {
             Debug.WriteLine(exception.Message);
         }
+
+        public void ProgramOutput(string text)
+        {
+            WriteLine(" --> " + text);
+        }
+
+        public void ProgramInput(string text)
+        {
+            WriteLine(" <-- " + text);
+        }
     }
 }

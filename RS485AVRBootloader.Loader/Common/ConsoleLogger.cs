@@ -17,5 +17,21 @@ namespace SerialAVRBootloader.Loader.Common
                 Console.Error.WriteLine(exception.StackTrace);
             }
         }
+
+        public void ProgramOutput(string text)
+        {
+            using (new ConsoleTextColor(ConsoleColor.Green))
+            {
+                Console.WriteLine(" --> " + text);
+            }
+        }
+
+        public void ProgramInput(string text)
+        {
+            using (new ConsoleTextColor(ConsoleColor.Yellow))
+            {
+                Console.WriteLine(" <-- " + text);
+            }
+        }
     }
 }

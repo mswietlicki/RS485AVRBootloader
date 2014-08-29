@@ -44,12 +44,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BootloaderCommunicator.cs" />
+    <Compile Include="Common\ByteExtensions.cs" />
     <Compile Include="Common\ConsoleLogger.cs" />
     <Compile Include="Common\ConsoleTextColor.cs" />
     <Compile Include="Common\FileLogger.cs" />
     <Compile Include="Common\ISettingsProvider.cs" />
     <Compile Include="Common\MultiLogger.cs" />
     <Compile Include="Communicators\Serial\ISerialDevice.cs" />
+    <Compile Include="Communicators\Serial\LoggerSerialDevice.cs" />
     <Compile Include="Communicators\Serial\SerialPortDevice.cs" />
     <Compile Include="MessagePrinter.cs" />
     <Compile Include="Model\BootloaderInfo.cs" />

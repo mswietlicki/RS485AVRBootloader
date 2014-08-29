@@ -20,7 +20,7 @@ namespace SerialAVRBootloader.Loader
             ISettingsProvider settingsProvider = new PropertiesSettingsProvider();
             printer.PrintConfig(settingsProvider);
 
-            using (ISerialDevice serialDevice = new SerialPortDevice(settingsProvider))
+            using (ISerialDevice serialDevice = new LoggerSerialDevice(new SerialPortDevice(settingsProvider, Logger), Logger))
             {
                 try
                 {
@@ -48,6 +48,9 @@ namespace SerialAVRBootloader.Loader
             Logger.WriteLine("Writing file: " + file);
             if (!File.Exists(file))
                 throw new FileNotFoundException(string.Format("File {0} not found!", file), file);
+            if (!file.EndsWith(".bin", StringComparison.InvariantCultureIgnoreCase))
+                throw new FileLoadException(string.Format("Input file must be in .BIN format!"), file);
+
             using (var dataStream = File.OpenRead(file))
             {
                 bootloader.WriteProgram(dataStream);
