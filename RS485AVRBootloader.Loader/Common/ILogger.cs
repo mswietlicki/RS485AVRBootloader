@@ -7,6 +7,9 @@ namespace SerialAVRBootloader.Loader.Common
         void WriteLine(string rawInfo);
         void WriteError(Exception exception);
         void ProgramOutput(string text);
+        void ProgramOutput(byte[] data);
         void ProgramInput(string text);
+        void ProgramInput(byte data);
+        void ProgramInput(byte[] data);
     }
 }

@@ -4,7 +4,7 @@ using SerialAVRBootloader.Loader.Common;
 
 namespace RS485AVRBootloader.Tests
 {
-    public class MemmoryLogger : ILogger
+    public class MemmoryLogger : BaseProgramLogger
     {
         private readonly StringBuilder _sb;
 
@@ -13,22 +13,22 @@ namespace RS485AVRBootloader.Tests
             _sb = new StringBuilder();
         }
 
-        public void WriteLine(string rawInfo)
+        public override void WriteLine(string rawInfo)
         {
             _sb.AppendLine(rawInfo);
         }
 
-        public void WriteError(Exception exception)
+        public override void WriteError(Exception exception)
         {
             _sb.AppendLine(exception.Message);
         }
 
-        public void ProgramOutput(string text)
+        public override void ProgramOutput(string text)
         {
             WriteLine(" --> " + text);
         }
 
-        public void ProgramInput(string text)
+        public override void ProgramInput(string text)
         {
             WriteLine(" <-- " + text);
         }

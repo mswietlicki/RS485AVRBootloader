@@ -28,9 +28,24 @@ namespace SerialAVRBootloader.Loader.Common
             _loggers.ForEach(_ => _.ProgramOutput(text));
         }
 
+        public void ProgramOutput(byte[] data)
+        {
+            _loggers.ForEach(_ => _.ProgramOutput(data));
+        }
+
         public void ProgramInput(string text)
         {
             _loggers.ForEach(_ => _.ProgramInput(text));
+        }
+
+        public void ProgramInput(byte data)
+        {
+            _loggers.ForEach(_ => _.ProgramInput(data));
+        }
+
+        public void ProgramInput(byte[] data)
+        {
+            _loggers.ForEach(_ => _.ProgramInput(data));
         }
     }
 }

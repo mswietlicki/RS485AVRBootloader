@@ -4,24 +4,24 @@ using SerialAVRBootloader.Loader.Common;
 
 namespace RS485AVRBootloader.Tests
 {
-    public class DebugLogger : ILogger
+    public class DebugLogger : BaseProgramLogger
     {
-        public void WriteLine(string rawInfo)
+        public override void WriteLine(string rawInfo)
         {
             Debug.WriteLine(rawInfo);
         }
 
-        public void WriteError(Exception exception)
+        public override void WriteError(Exception exception)
         {
             Debug.WriteLine(exception.Message);
         }
 
-        public void ProgramOutput(string text)
+        public override void ProgramOutput(string text)
         {
             WriteLine(" --> " + text);
         }
 
-        public void ProgramInput(string text)
+        public override void ProgramInput(string text)
         {
             WriteLine(" <-- " + text);
         }

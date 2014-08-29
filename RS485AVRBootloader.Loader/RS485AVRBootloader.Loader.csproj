@@ -50,6 +50,7 @@
     <Compile Include="Common\FileLogger.cs" />
     <Compile Include="Common\ISettingsProvider.cs" />
     <Compile Include="Common\MultiLogger.cs" />
+    <Compile Include="Common\BaseProgramLogger.cs" />
     <Compile Include="Communicators\Serial\ISerialDevice.cs" />
     <Compile Include="Communicators\Serial\LoggerSerialDevice.cs" />
     <Compile Include="Communicators\Serial\SerialPortDevice.cs" />

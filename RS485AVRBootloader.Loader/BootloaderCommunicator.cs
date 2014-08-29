@@ -1,4 +1,5 @@
 ﻿using System.IO;
+using System.Linq;
 using SerialAVRBootloader.Loader.Common;
 using SerialAVRBootloader.Loader.Communicators;
 using SerialAVRBootloader.Loader.Exceptions;
@@ -26,7 +27,6 @@ namespace SerialAVRBootloader.Loader
             _communicator.Write("ui");
 
             var rawInfo = _communicator.ReadTo("?");
-            _logger.WriteLine(rawInfo);
 
             return BootloaderInfo.Parse(rawInfo);
         }
@@ -47,7 +47,7 @@ namespace SerialAVRBootloader.Loader
 
                 if (dataStream.Position + 64 >= dataStream.Length)
                 {
-                    var toEnd = (int) (dataStream.Length - dataStream.Position);
+                    var toEnd = (int)(dataStream.Length - dataStream.Position);
                     dataStream.Read(data, 0, toEnd);
 
                     if (dataStream.CanSeek)
@@ -66,8 +66,12 @@ namespace SerialAVRBootloader.Loader
                 _communicator.Write(data, 0, 64);
 
                 if (!endofFile)
-                    if (_communicator.ReadChar() != '@')
+                {
+                    var ack = _communicator.ReadChar();
+
+                    if (new[] { '@', (char)0xA0 }.Contains(ack) == false)
                         throw new CommunicationLostExpection();
+                }
             }
             _communicator.Write(new byte[] { 0 }, 0, 1); //Send end 0
         }

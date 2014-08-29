@@ -26,22 +26,21 @@ namespace SerialAVRBootloader.Loader.Communicators.Serial
 
         public void Write(byte[] data, int offset, int count)
         {
-            _logger.ProgramOutput(data.ToHexString());
+            _logger.ProgramOutput(data);
             _device.Write(data, offset, count);
         }
 
         public byte ReadByte()
         {
             var data = _device.ReadByte();
-            _logger.ProgramInput(data.ToHexString());
+            _logger.ProgramInput(data);
             return data;
         }
 
         public char ReadChar()
         {
             var data = _device.ReadChar();
-
-            _logger.ProgramInput(((byte)data).ToHexString());
+            _logger.ProgramInput((byte)data);
             return data;
         }
 
