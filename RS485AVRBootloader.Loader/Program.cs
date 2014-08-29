@@ -45,11 +45,18 @@ namespace SerialAVRBootloader.Loader
 
         private static void SaveProgram(string file, BootloaderCommunicator bootloader)
         {
-            Logger.WriteLine("Writing file: " + file);
             if (!File.Exists(file))
                 throw new FileNotFoundException(string.Format("File {0} not found!", file), file);
             if (!file.EndsWith(".bin", StringComparison.InvariantCultureIgnoreCase))
                 throw new FileLoadException(string.Format("Input file must be in .BIN format!"), file);
+
+            Logger.WriteLine("Reading file: " + file + Environment.NewLine);
+
+            var bytes = File.ReadAllBytes(file);
+            Logger.WriteLine(bytes.ToHexString());
+            Logger.WriteLine("");
+
+            Logger.WriteLine("Writing file: " + file + Environment.NewLine);
 
             using (var dataStream = File.OpenRead(file))
             {
