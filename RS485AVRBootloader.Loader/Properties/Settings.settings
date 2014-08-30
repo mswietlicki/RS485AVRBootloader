@@ -1,11 +1,9 @@
 ﻿<?xml version='1.0' encoding='utf-8'?>
-
-<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)"
-              GeneratedClassNamespace="SerialAVRBootloader.Loader.Properties" GeneratedClassName="Settings">
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="SerialAVRBootloader.Loader.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
     <Setting Name="PortName" Type="System.String" Scope="User">
-      <Value Profile="(Default)">COM9</Value>
+      <Value Profile="(Default)">COM8</Value>
     </Setting>
     <Setting Name="PortBaudRate" Type="System.String" Scope="User">
       <Value Profile="(Default)">9600</Value>

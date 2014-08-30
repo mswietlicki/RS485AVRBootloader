@@ -2,6 +2,7 @@
 using System.IO.Ports;
 using System.Linq;
 using SerialAVRBootloader.Loader.Common;
+using System.Threading;
 
 namespace SerialAVRBootloader.Loader.Communicators.Serial
 {
@@ -35,7 +36,13 @@ namespace SerialAVRBootloader.Loader.Communicators.Serial
 
         public void Write(byte[] data, int offset, int count)
         {
-            _serialPort.Write(data, offset, count);
+            var buff = new byte[1];
+            for (int i = 0; i < count; i++)
+            {
+                buff[0] = data[i];
+                Thread.Sleep(1);
+                _serialPort.Write(buff, 0, 1);
+            }
         }
 
         public byte ReadByte()
@@ -45,7 +52,8 @@ namespace SerialAVRBootloader.Loader.Communicators.Serial
 
         public char ReadChar()
         {
-            return (char)_serialPort.ReadByte();
+            
+            return (char)_serialPort.ReadChar();
         }
 
         public string ReadExisting()
